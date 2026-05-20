@@ -7,25 +7,32 @@ const Tracking: React.FC = () => {
   const [trackingId, setTrackingId] = useState('');
   const [showStatus, setShowStatus] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
+  const [startTime, setStartTime] = useState<number | null>(null);
   const { t } = useTranslation();
+
+  const totalSimulatedDuration = 5 * 24 * 60 * 60 * 1000; // 5 days real time
+  const tickInterval = 1000;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (trackingId) {
       setShowStatus(true);
       setProgress(0);
+      setStartTime(Date.now());
     }
   };
 
   useEffect(() => {
-    let interval: number;
-    if (showStatus && progress < 100) {
+    let interval: ReturnType<typeof setInterval>;
+    if (showStatus && startTime !== null) {
       interval = setInterval(() => {
-        setProgress((prev) => Math.min(prev + 0.5, 100));
-      }, 50); // Simulates 5 days in ~10 seconds
+        const elapsed = Date.now() - startTime;
+        const nextProgress = Math.min((elapsed / totalSimulatedDuration) * 100, 100);
+        setProgress(nextProgress);
+      }, tickInterval);
     }
     return () => clearInterval(interval);
-  }, [showStatus, progress]);
+  }, [showStatus, startTime]);
 
   // Coordinates for the ports in the SVG (viewBox="0 0 800 400")
   const busan = { x: 600, y: 150 };
@@ -52,7 +59,15 @@ const Tracking: React.FC = () => {
   };
 
   const shipPos = getShipPos();
-  const currentDay = Math.floor((progress / 100) * 5) + 1;
+  const currentDay = Math.min(Math.max(1, Math.ceil((progress / 100) * 5)), 5);
+  const progressPercent = Math.round(progress);
+  const departureDate = new Date(startTime ?? Date.now());
+  const etaDate = new Date(departureDate.getTime() + 5 * 24 * 60 * 60 * 1000);
+  const formattedEta = etaDate.toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
 
   return (
     <div className={styles.trackingPage}>
@@ -83,39 +98,74 @@ const Tracking: React.FC = () => {
           <div className="container">
             <div className={styles.mapContainer}>
               <div className={styles.mapHeader}>
-                  <div>
-                    <h3>{t('tracking.live_simulation')}: {trackingId}</h3>
-                    <p>{t('tracking.current_day', { day: currentDay > 5 ? 5 : currentDay })}</p>
-                  </div>
+                <div>
+                  <h3>{t('tracking.live_simulation')}: {trackingId}</h3>
+                  <p>{t('tracking.current_day', { day: currentDay > 5 ? 5 : currentDay })}</p>
                 </div>
+                <div className={styles.mapStatus}>
+                  <span>{`Progress: ${progressPercent}%`}</span>
+                </div>
+              </div>
               <div className={styles.mapWrapper}>
                 <svg viewBox="0 0 800 400" className={styles.svgMap}>
-                  {/* Water Background */}
-                  <rect width="800" height="400" fill="#f0f9ff" />
-                  
-                  {/* Landmass Mockup */}
-                  <path d="M550,0 L800,0 L800,400 L500,400 Q520,300 580,250 T620,100 Z" fill="#e2e8f0" />
-                  <path d="M0,0 L450,0 Q400,100 350,150 T300,300 L0,400 Z" fill="#e2e8f0" />
+                  <defs>
+                    <linearGradient id="seaGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#d7f5ff" />
+                      <stop offset="100%" stopColor="#9dd9ff" />
+                    </linearGradient>
+                    <linearGradient id="landGradient" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#f7f2e7" />
+                      <stop offset="100%" stopColor="#d9d1b8" />
+                    </linearGradient>
+                    <filter id="shipShadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#0f172a" floodOpacity="0.12" />
+                    </filter>
+                    <marker id="arrowTip" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+                      <path d="M0,0 L10,5 L0,10 Z" fill="#ffffff" />
+                    </marker>
+                  </defs>
 
-                  {/* Route Paths */}
-                  <line x1={busan.x} y1={busan.y} x2={qingdao.x} y2={qingdao.y} stroke="#cbd5e1" strokeWidth="2" strokeDasharray="5,5" />
-                  <line x1={qingdao.x} y1={qingdao.y} x2={shanghai.x} y2={shanghai.y} stroke="#cbd5e1" strokeWidth="2" strokeDasharray="5,5" />
+                  <rect width="800" height="400" fill="url(#seaGradient)" />
 
-                  {/* Ports */}
-                  <circle cx={busan.x} cy={busan.y} r="6" fill="#003366" />
-                  <text x={busan.x + 10} y={busan.y} className={styles.portLabel}>{t('tracking.busan')}</text>
-                  
-                  <circle cx={qingdao.x} cy={qingdao.y} r="6" fill="#003366" />
-                  <text x={qingdao.x - 60} y={qingdao.y + 5} className={styles.portLabel}>{t('tracking.qingdao')}</text>
+                  <g opacity="0.85">
+                    <path d="M550,0 L800,0 L800,400 L500,400 Q520,300 580,250 T620,100 Z" fill="url(#landGradient)" />
+                    <path d="M0,0 L450,0 Q400,100 350,150 T300,300 L0,400 Z" fill="url(#landGradient)" />
+                  </g>
 
-                  <circle cx={shanghai.x} cy={shanghai.y} r="6" fill="#10b981" />
-                  <text x={shanghai.x + 10} y={shanghai.y + 5} className={styles.portLabel}>{t('tracking.shanghai')}</text>
+                  <g className={styles.waveLines}>
+                    <path d="M40,70 C110,60 170,100 240,90" />
+                    <path d="M120,140 C190,130 250,170 320,160" />
+                    <path d="M200,220 C270,210 330,250 400,240" />
+                    <path d="M330,90 C400,80 460,120 530,110" />
+                  </g>
 
-                  {/* Animated Ship */}
-                  <g transform={`translate(${shipPos.x - 15}, ${shipPos.y - 10})`}>
-                    <rect width="30" height="12" rx="2" fill="#003366" />
-                    <path d="M5,0 L10,-5 L20,-5 L25,0" fill="#003366" />
-                    <circle cx="15" cy="6" r="2" fill="white" opacity="0.5" />
+                  <path
+                    d={`M${busan.x},${busan.y} L${qingdao.x},${qingdao.y} L${shanghai.x},${shanghai.y}`}
+                    fill="none"
+                    stroke="#ffffff"
+                    strokeWidth="3"
+                    strokeDasharray="10,10"
+                    strokeLinecap="round"
+                    markerEnd="url(#arrowTip)"
+                    opacity="0.85"
+                  />
+
+                  <circle className={styles.portHalo} cx={busan.x} cy={busan.y} r="14" />
+                  <circle className={styles.portDot} cx={busan.x} cy={busan.y} r="6" />
+                  <text x={busan.x + 10} y={busan.y - 10} className={styles.portLabel}>{t('tracking.busan')}</text>
+
+                  <circle className={styles.portHalo} cx={qingdao.x} cy={qingdao.y} r="14" />
+                  <circle className={styles.portDot} cx={qingdao.x} cy={qingdao.y} r="6" />
+                  <text x={qingdao.x - 60} y={qingdao.y - 10} className={styles.portLabel}>{t('tracking.qingdao')}</text>
+
+                  <circle className={styles.portHaloActive} cx={shanghai.x} cy={shanghai.y} r="16" />
+                  <circle className={styles.portDotActive} cx={shanghai.x} cy={shanghai.y} r="7" />
+                  <text x={shanghai.x + 10} y={shanghai.y - 10} className={styles.portLabel}>{t('tracking.shanghai')}</text>
+
+                  <g transform={`translate(${shipPos.x - 18}, ${shipPos.y - 12})`} filter="url(#shipShadow)">
+                    <rect width="36" height="14" rx="4" fill="#0f172a" />
+                    <path d="M8,0 L12,-6 L24,-6 L28,0" fill="#0f172a" />
+                    <circle cx="18" cy="8" r="3" fill="#38bdf8" />
                   </g>
                 </svg>
 
@@ -136,7 +186,7 @@ const Tracking: React.FC = () => {
                     <div className={styles.infoIcon}><Clock size={20} /></div>
                     <div>
                       <p className={styles.infoLabel}>{t('tracking.estimated_eta')}</p>
-                      <p className={styles.infoValue}>{progress < 100 ? 'May 25, 2026' : t('tracking.delivered')}</p>
+                      <p className={styles.infoValue}>{progress < 100 ? formattedEta : t('tracking.delivered')}</p>
                     </div>
                   </div>
                 </div>
