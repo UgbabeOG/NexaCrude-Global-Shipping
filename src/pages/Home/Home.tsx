@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import styles from './Home.module.css';
 
 const slides = [
   {
-    title: 'Connecting Economies',
-    subtitle: 'Driving Global Trade with Innovative Logistics',
+    titleKey: 'home.slide1_title',
+    subtitleKey: 'home.slide1_subtitle',
     image: 'https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?auto=format&fit=crop&q=80&w=1600',
     color: '#003366'
   },
   {
-    title: 'Sharing Prosperity',
-    subtitle: 'A Strategic Partner in Saudi Vision 2030',
+    titleKey: 'home.slide2_title',
+    subtitleKey: 'home.slide2_subtitle',
     image: 'https://images.unsplash.com/photo-1494412574743-0194852939cf?auto=format&fit=crop&q=80&w=1600',
     color: '#004488'
   },
   {
-    title: 'Global Logistics Solutions',
-    subtitle: 'End-to-End Excellence Across All Borders',
+    titleKey: 'home.slide3_title',
+    subtitleKey: 'home.slide3_subtitle',
     image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1600',
     color: '#002244'
   }
 ];
 
 const units = [
-  { id: 'oil', name: 'NexaCrude Oil', desc: 'World leader in VLCC ownership and operation.', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600' },
-  { id: 'logistics', name: 'NexaCrude Logistics', desc: 'Comprehensive freight forwarding and warehousing.', image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=600' },
-  { id: 'chemicals', name: 'NexaCrude Chemicals', desc: 'Safe transport of high-value chemical products.', image: 'https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&q=80&w=600' },
-  { id: 'drybulk', name: 'NexaCrude Dry Bulk', desc: 'Reliable shipment of agricultural and mineral bulk.', image: 'https://images.unsplash.com/photo-1454165833069-111d816276d1?auto=format&fit=crop&q=80&w=600' },
-  { id: 'ship-mgmt', name: 'Ship Management', desc: 'Expert technical and crew management services.', image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600' },
-  { id: 'marine', name: 'NexaCrude Marine', desc: 'Specialized offshore and subsea support services.', image: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=600' }
+  { id: 'oil', nameKey: 'home.oil_name', descKey: 'home.oil_desc', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600' },
+  { id: 'logistics', nameKey: 'home.logistics_name', descKey: 'home.logistics_desc', image: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=600' },
+  { id: 'chemicals', nameKey: 'home.chemicals_name', descKey: 'home.chemicals_desc', image: 'https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&q=80&w=600' },
+  { id: 'drybulk', nameKey: 'home.drybulk_name', descKey: 'home.drybulk_desc', image: 'https://images.unsplash.com/photo-1454165833069-111d816276d1?auto=format&fit=crop&q=80&w=600' },
+  { id: 'ship-mgmt', nameKey: 'home.ship_mgmt_name', descKey: 'home.ship_mgmt_desc', image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600' },
+  { id: 'marine', nameKey: 'home.marine_name', descKey: 'home.marine_desc', image: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=600' }
 ];
 
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,9 +57,9 @@ const Home: React.FC = () => {
             <div className="container">
               <div className={styles.slideContent}>
                 <span className={styles.slideCounter}>0{index + 1}/0{slides.length}</span>
-                <h1>{slide.title}</h1>
-                <p>{slide.subtitle}</p>
-                <button className="btn btn-outline">About NexaCrude</button>
+                <h1>{t(slide.titleKey)}</h1>
+                <p>{t(slide.subtitleKey)}</p>
+                <button className="btn btn-outline">{t('home.about_btn')}</button>
               </div>
             </div>
           </div>
@@ -74,17 +76,17 @@ const Home: React.FC = () => {
       <section className={styles.unitsSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2>Our Business Units</h2>
-            <p>Diverse maritime services tailored to global needs.</p>
+            <h2>{t('home.units_title')}</h2>
+            <p>{t('home.units_subtitle')}</p>
           </div>
           <div className={styles.unitsGrid}>
             {units.map((unit) => (
               <div key={unit.id} className={styles.unitCard}>
                 <div className={styles.unitImage} style={{ backgroundImage: `url(${unit.image})` }}></div>
                 <div className={styles.unitContent}>
-                  <h3>{unit.name}</h3>
-                  <p>{unit.desc}</p>
-                  <a href="#" className={styles.learnMore}>Learn More <ArrowRight size={16} /></a>
+                  <h3>{t(unit.nameKey)}</h3>
+                  <p>{t(unit.descKey)}</p>
+                  <a href="#" className={styles.learnMore}>{t('home.learn_more')} <ArrowRight size={16} /></a>
                 </div>
               </div>
             ))}
@@ -98,19 +100,19 @@ const Home: React.FC = () => {
           <div className={styles.statsGrid}>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>45+</span>
-              <span className={styles.statLabel}>Years of Experience</span>
+              <span className={styles.statLabel}>{t('home.exp_stat')}</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>104</span>
-              <span className={styles.statLabel}>Global Vessels</span>
+              <span className={styles.statLabel}>{t('home.vessels_stat')}</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>150+</span>
-              <span className={styles.statLabel}>Port Connections</span>
+              <span className={styles.statLabel}>{t('home.ports_stat')}</span>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNumber}>24/7</span>
-              <span className={styles.statLabel}>Live Monitoring</span>
+              <span className={styles.statLabel}>{t('home.monitoring_stat')}</span>
             </div>
           </div>
         </div>
@@ -121,11 +123,11 @@ const Home: React.FC = () => {
         <div className="container">
           <div className={styles.investorBox}>
             <div className={styles.investorText}>
-              <h2>Investor Relations</h2>
-              <p>Transparent and accurate financial reporting for our global stakeholders.</p>
+              <h2>{t('home.investor_title')}</h2>
+              <p>{t('home.investor_desc')}</p>
               <div className={styles.investorLinks}>
-                <button className="btn">Annual Reports</button>
-                <button className="btn btn-outline" style={{ borderColor: 'var(--primary)', color: 'var(--primary)' }}>Stock Info</button>
+                <button className="btn">{t('home.annual_reports')}</button>
+                <button className="btn btn-outline" style={{ borderColor: 'var(--primary)', color: 'var(--primary)' }}>{t('home.stock_info')}</button>
               </div>
             </div>
           </div>

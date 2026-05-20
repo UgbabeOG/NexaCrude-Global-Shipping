@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Package, MapPin, Truck, CheckCircle, Clock, Play, RotateCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import styles from './Tracking.module.css';
 
 const Tracking: React.FC = () => {
@@ -7,6 +8,7 @@ const Tracking: React.FC = () => {
   const [showStatus, setShowStatus] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
   const [isSimulating, setIsSimulating] = useState(false);
+  const { t } = useTranslation();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,20 +62,20 @@ const Tracking: React.FC = () => {
       <section className={styles.hero}>
         <div className="container">
           <div className={styles.heroContent}>
-            <h1>Track Your Shipment</h1>
-            <p>Enter your tracking number to watch your cargo's 5-day voyage in real-time.</p>
+            <h1>{t('tracking.title')}</h1>
+            <p>{t('tracking.desc')}</p>
             
             <form className={styles.searchForm} onSubmit={handleSearch}>
               <div className={styles.inputGroup}>
                 <Search className={styles.searchIcon} />
                 <input 
                   type="text" 
-                  placeholder="Enter Tracking ID (e.g., KOREA-SH-001)" 
+                  placeholder={t('tracking.placeholder')} 
                   value={trackingId}
                   onChange={(e) => setTrackingId(e.target.value)}
                 />
               </div>
-              <button type="submit" className="btn">Track Now</button>
+              <button type="submit" className="btn">{t('tracking.btn')}</button>
             </form>
           </div>
         </div>
@@ -85,8 +87,8 @@ const Tracking: React.FC = () => {
             <div className={styles.mapContainer}>
               <div className={styles.mapHeader}>
                 <div>
-                  <h3>Live Voyage Simulation: {trackingId}</h3>
-                  <p>Current Day: {currentDay > 5 ? 5 : currentDay} / 5</p>
+                  <h3>{t('tracking.live_simulation')}: {trackingId}</h3>
+                  <p>{t('tracking.current_day', { day: currentDay > 5 ? 5 : currentDay })}</p>
                 </div>
                 <div className={styles.mapControls}>
                   <button 
@@ -95,14 +97,14 @@ const Tracking: React.FC = () => {
                     disabled={progress >= 100}
                   >
                     <Play size={18} fill={isSimulating ? 'currentColor' : 'none'} />
-                    {isSimulating ? 'Pause' : 'Start Voyage'}
+                    {isSimulating ? t('tracking.pause') : t('tracking.start_voyage')}
                   </button>
                   <button 
                     className={styles.controlBtn} 
                     onClick={() => {setProgress(0); setIsSimulating(false);}}
                   >
                     <RotateCcw size={18} />
-                    Reset
+                    {t('tracking.reset')}
                   </button>
                 </div>
               </div>
@@ -122,13 +124,13 @@ const Tracking: React.FC = () => {
 
                   {/* Ports */}
                   <circle cx={busan.x} cy={busan.y} r="6" fill="#003366" />
-                  <text x={busan.x + 10} y={busan.y} className={styles.portLabel}>Busan</text>
+                  <text x={busan.x + 10} y={busan.y} className={styles.portLabel}>{t('tracking.busan')}</text>
                   
                   <circle cx={qingdao.x} cy={qingdao.y} r="6" fill="#003366" />
-                  <text x={qingdao.x - 60} y={qingdao.y + 5} className={styles.portLabel}>Qingdao</text>
+                  <text x={qingdao.x - 60} y={qingdao.y + 5} className={styles.portLabel}>{t('tracking.qingdao')}</text>
 
                   <circle cx={shanghai.x} cy={shanghai.y} r="6" fill="#10b981" />
-                  <text x={shanghai.x + 10} y={shanghai.y + 5} className={styles.portLabel}>Shanghai</text>
+                  <text x={shanghai.x + 10} y={shanghai.y + 5} className={styles.portLabel}>{t('tracking.shanghai')}</text>
 
                   {/* Animated Ship */}
                   <g transform={`translate(${shipPos.x - 15}, ${shipPos.y - 10})`}>
@@ -142,20 +144,20 @@ const Tracking: React.FC = () => {
                   <div className={styles.infoCard}>
                     <div className={styles.infoIcon}><MapPin size={20} /></div>
                     <div>
-                      <p className={styles.infoLabel}>Current Leg</p>
+                      <p className={styles.infoLabel}>{t('tracking.current_leg')}</p>
                       <p className={styles.infoValue}>
-                        {progress === 0 ? 'At Port: Busan' : 
-                         progress < 50 ? 'Busan → Qingdao' : 
-                         progress === 50 ? 'At Port: Qingdao' :
-                         progress < 100 ? 'Qingdao → Shanghai' : 'Arrived: Shanghai'}
+                        {progress === 0 ? t('tracking.at_port_busan') : 
+                         progress < 50 ? t('tracking.busan_qingdao') : 
+                         progress === 50 ? t('tracking.at_port_qingdao') :
+                         progress < 100 ? t('tracking.qingdao_shanghai') : t('tracking.arrived_shanghai')}
                       </p>
                     </div>
                   </div>
                   <div className={styles.infoCard}>
                     <div className={styles.infoIcon}><Clock size={20} /></div>
                     <div>
-                      <p className={styles.infoLabel}>Estimated ETA</p>
-                      <p className={styles.infoValue}>{progress < 100 ? 'May 25, 2026' : 'Delivered'}</p>
+                      <p className={styles.infoLabel}>{t('tracking.estimated_eta')}</p>
+                      <p className={styles.infoValue}>{progress < 100 ? 'May 25, 2026' : t('tracking.delivered')}</p>
                     </div>
                   </div>
                 </div>
@@ -165,15 +167,15 @@ const Tracking: React.FC = () => {
             <div className={styles.statusTimeline}>
               <div className={`${styles.step} ${progress >= 0 ? styles.completed : ''}`}>
                 <div className={styles.stepIcon}><CheckCircle size={20} /></div>
-                <p>Departure: Busan</p>
+                <p>{t('tracking.departure_busan')}</p>
               </div>
               <div className={`${styles.step} ${progress >= 50 ? styles.completed : ''}`}>
                 <div className={styles.stepIcon}><Package size={20} /></div>
-                <p>Stop: Qingdao</p>
+                <p>{t('tracking.stop_qingdao')}</p>
               </div>
               <div className={`${styles.step} ${progress >= 100 ? styles.completed : ''}`}>
                 <div className={styles.stepIcon}><Truck size={20} /></div>
-                <p>Arrival: Shanghai</p>
+                <p>{t('tracking.arrival_shanghai')}</p>
               </div>
             </div>
           </div>

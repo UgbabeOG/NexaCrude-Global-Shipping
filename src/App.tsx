@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import Tracking from './pages/Tracking/Tracking';
 
 const App: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Router>
       <Layout>
@@ -12,10 +15,10 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/tracking" element={<Tracking />} />
           {/* Placeholder routes for other links */}
-          <Route path="/about" element={<div className="container" style={{padding: '100px 0'}}><h1>About NexaCrude</h1><p>This is a placeholder for the About page.</p></div>} />
-          <Route path="/units" element={<div className="container" style={{padding: '100px 0'}}><h1>NexaCrude Units</h1><p>This is a placeholder for the Business Units page.</p></div>} />
-          <Route path="/logistics" element={<div className="container" style={{padding: '100px 0'}}><h1>Logistic Services</h1><p>This is a placeholder for the Logistics page.</p></div>} />
-          <Route path="/investors" element={<div className="container" style={{padding: '100px 0'}}><h1>Investor Relations</h1><p>This is a placeholder for the Investors page.</p></div>} />
+          <Route path="/about" element={<div className="container" style={{padding: '100px 0'}}><h1>{t('placeholders.about_title')}</h1><p>{t('placeholders.about_desc')}</p></div>} />
+          <Route path="/units" element={<div className="container" style={{padding: '100px 0'}}><h1>{t('placeholders.units_title')}</h1><p>{t('placeholders.units_desc')}</p></div>} />
+          <Route path="/logistics" element={<div className="container" style={{padding: '100px 0'}}><h1>{t('placeholders.logistics_title')}</h1><p>{t('placeholders.logistics_desc')}</p></div>} />
+          <Route path="/investors" element={<div className="container" style={{padding: '100px 0'}}><h1>{t('placeholders.investors_title')}</h1><p>{t('placeholders.investors_desc')}</p></div>} />
         </Routes>
       </Layout>
     </Router>

@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Globe, Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import styles from './Header.module.css';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const nextLang = i18n.language === 'en' ? 'zh' : 'en';
+    i18n.changeLanguage(nextLang);
+  };
 
   return (
     <header className={styles.header}>
@@ -12,14 +19,14 @@ const Header: React.FC = () => {
         <div className="container">
           <div className={styles.topBarContent}>
             <div className={styles.utilityLinks}>
-              <Link to="/careers">Careers</Link>
-              <Link to="/isupplier">iSupplier</Link>
-              <Link to="/faqs">FAQs</Link>
+              <Link to="/careers">{t('header.careers')}</Link>
+              <Link to="/isupplier">{t('header.isupplier')}</Link>
+              <Link to="/faqs">{t('header.faqs')}</Link>
             </div>
             <div className={styles.topBarRight}>
-              <button className={styles.langToggle}>
+              <button className={styles.langToggle} onClick={toggleLanguage}>
                 <Globe size={16} />
-                <span>العربية</span>
+                <span>{i18n.language === 'en' ? '中文' : 'English'}</span>
               </button>
             </div>
           </div>
@@ -36,11 +43,11 @@ const Header: React.FC = () => {
             </Link>
 
             <div className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}>
-              <Link to="/about" onClick={() => setIsMenuOpen(false)}>About NexaCrude</Link>
-              <Link to="/units" onClick={() => setIsMenuOpen(false)}>NexaCrude Units</Link>
-              <Link to="/logistics" onClick={() => setIsMenuOpen(false)}>Logistic Services</Link>
-              <Link to="/investors" onClick={() => setIsMenuOpen(false)}>Investor Relations</Link>
-              <Link to="/tracking" className={styles.trackingLink} onClick={() => setIsMenuOpen(false)}>Track Shipment</Link>
+              <Link to="/about" onClick={() => setIsMenuOpen(false)}>{t('header.about')}</Link>
+              <Link to="/units" onClick={() => setIsMenuOpen(false)}>{t('header.units')}</Link>
+              <Link to="/logistics" onClick={() => setIsMenuOpen(false)}>{t('header.logistics')}</Link>
+              <Link to="/investors" onClick={() => setIsMenuOpen(false)}>{t('header.investors')}</Link>
+              <Link to="/tracking" className={styles.trackingLink} onClick={() => setIsMenuOpen(false)}>{t('header.track')}</Link>
             </div>
 
             <div className={styles.navActions}>

@@ -1,15 +1,18 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.css';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.footerGrid}>
           <div className={styles.footerInfo}>
             <h2 className={styles.logoText}>NEXACRUDE</h2>
-            <p>A global leader in logistics and shipping, driving the maritime industry forward with innovation and excellence.</p>
+            <p>{t('footer.about_desc')}</p>
             <div className={styles.socials}>
               <Mail size={20} />
               <Phone size={20} />
@@ -19,38 +22,38 @@ const Footer: React.FC = () => {
           </div>
           
           <div className={styles.linksSection}>
-            <h3>About</h3>
+            <h3>{t('footer.about')}</h3>
             <ul>
-              <li><a href="#">Company Profile</a></li>
-              <li><a href="#">Leadership</a></li>
-              <li><a href="#">Sustainability</a></li>
-              <li><a href="#">Awards</a></li>
+              <li><a href="#">{t('footer.company_profile')}</a></li>
+              <li><a href="#">{t('footer.leadership')}</a></li>
+              <li><a href="#">{t('footer.sustainability')}</a></li>
+              <li><a href="#">{t('footer.awards')}</a></li>
             </ul>
           </div>
 
           <div className={styles.linksSection}>
-            <h3>Services</h3>
+            <h3>{t('footer.services')}</h3>
             <ul>
-              <li><a href="#">NexaCrude Oil</a></li>
-              <li><a href="#">NexaCrude Logistics</a></li>
-              <li><a href="#">NexaCrude Chemicals</a></li>
-              <li><a href="#">Ship Management</a></li>
+              <li><a href="#">{t('home.oil_name')}</a></li>
+              <li><a href="#">{t('home.logistics_name')}</a></li>
+              <li><a href="#">{t('home.chemicals_name')}</a></li>
+              <li><a href="#">{t('footer.ship_management')}</a></li>
             </ul>
           </div>
 
           <div className={styles.linksSection}>
-            <h3>Support</h3>
+            <h3>{t('footer.support')}</h3>
             <ul>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Global Network</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">{t('footer.contact_us')}</a></li>
+              <li><a href="#">{t('footer.global_network')}</a></li>
+              <li><a href="#">{t('footer.privacy_policy')}</a></li>
+              <li><a href="#">{t('footer.terms_conditions')}</a></li>
             </ul>
           </div>
         </div>
         
         <div className={styles.bottomBar}>
-          <p>&copy; 2026 NexaCrude. All rights reserved. Saudi Vision 2030</p>
+          <p>{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>
