@@ -1,0 +1,122 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--secondary);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.topBar {
+  background: var(--accent-light);
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.topBarContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.utilityLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.utilityLinks a {
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.utilityLinks a:hover {
+  color: var(--primary);
+}
+
+.langToggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mainHeader {
+  padding: 15px 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 2px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 30px;
+}
+
+.navLinks a {
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+.navLinks a:hover {
+  color: var(--primary);
+}
+
+.trackingLink {
+  color: var(--primary) !important;
+  border: 1px solid var(--primary);
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.navActions {
+  display: flex;
+  gap: 15px;
+}
+
+.iconBtn, .menuBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+
+.menuBtn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menuBtn {
+    display: block;
+  }
+
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--secondary);
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    display: none;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+
+  .navLinks.active {
+    display: flex;
+  }
+}

@@ -1,0 +1,189 @@
+.hero {
+  height: 85vh;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slideContent {
+  color: var(--secondary);
+  max-width: 600px;
+}
+
+.slideCounter {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.slideContent h1 {
+  font-size: 56px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.slideContent p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.sliderBtnPrev, .sliderBtnNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  padding: 20px 10px;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 10;
+}
+
+.sliderBtnPrev:hover, .sliderBtnNext:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.sliderBtnPrev { left: 0; border-radius: 0 4px 4px 0; }
+.sliderBtnNext { right: 0; border-radius: 4px 0 0 4px; }
+
+.unitsSection {
+  padding: 80px 0;
+  background: var(--accent-light);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.sectionHeader h2 {
+  font-size: 36px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.unitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.unitCard {
+  background: var(--secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: var(--transition);
+}
+
+.unitCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.unitImage {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.unitContent {
+  padding: 25px;
+}
+
+.unitContent h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.learnMore {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 15px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.statsSection {
+  padding: 60px 0;
+  background: var(--primary);
+  color: var(--secondary);
+}
+
+.statsGrid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statNumber {
+  display: block;
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.statLabel {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.investorSection {
+  padding: 80px 0;
+}
+
+.investorBox {
+  background: var(--accent-light);
+  padding: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.investorText h2 {
+  font-size: 32px;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.investorLinks {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .slideContent h1 { font-size: 36px; }
+  .unitsGrid { grid-template-columns: 1fr; }
+  .investorBox { padding: 30px; }
+}
