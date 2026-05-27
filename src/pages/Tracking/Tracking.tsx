@@ -341,6 +341,13 @@ const Tracking: React.FC = () => {
                         className={styles.shipGroup}
                         onClick={() => setActiveInfo('ship')}
                       >
+                        <path
+                          d="M2,20 C10,14 18,20 26,14 S42,20 50,14"
+                          fill="none"
+                          stroke="#60a5fa"
+                          strokeWidth="2"
+                          className={styles.shipWave}
+                        />
                         <circle cx="18" cy="8" r="8" fill="rgba(56, 189, 248, 0.2)" className={styles.shipGlow} />
                         <rect width="36" height="14" rx="4" fill="#0f172a" className={styles.shipBody} />
                         <path d="M8,0 L12,-6 L24,-6 L28,0" fill="#0f172a" />

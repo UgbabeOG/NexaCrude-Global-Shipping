@@ -88,6 +88,28 @@ const resources = {
         stop_qingdao: "Stop: Qingdao",
         arrival_shanghai: "Arrival: Shanghai"
       },
+      about: {
+        title: "About NexaCrude",
+        intro: "NexaCrude is a next-generation maritime logistics leader built for modern energy and trade. We blend ultra-large crude carrier expertise, digital shipping operations, and sustainable port-to-port services to move global commerce with speed, transparency, and resilience.",
+        mission_title: "Our Mission",
+        mission_text: "Deliver safe, reliable and carbon-conscious shipping solutions that empower customers, communities and economies across every ocean.",
+        vision_title: "Our Vision",
+        vision_text: "Be the world’s most trusted maritime partner by combining Saudi strategic scale with advanced logistics intelligence and next-level service.",
+        values_title: "Core Strengths",
+        values_text: "Integrated shipping, proactive supply-chain planning, and an innovation-first culture make NexaCrude the benchmark for modern maritime logistics.",
+        sustainability_title: "Sustainability Focus",
+        sustainability_text: "We invest in cleaner fuel options, shore power-ready terminals, and voyage optimization to reduce emissions while maintaining dependable delivery."
+      },
+      units: {
+        title: "NexaCrude Business Units",
+        intro: "Our diversified business units deliver specialized services across ship operation, cargo logistics, chemical transport, dry-bulk movement, and offshore marine support.",
+        oil_desc: "Managed VLCC fleet and crude carriage solutions connecting oil producers to refineries with safe, compliant transport.",
+        logistics_desc: "Integrated freight forwarding, customs facilitation, warehousing and multimodal coordination across major trade corridors.",
+        chemicals_desc: "Dedicated chemical tankers and risk-aware handling for sensitive industrial cargo.",
+        drybulk_desc: "Efficient chartering and shipment of dry commodities including grain, minerals and construction materials.",
+        ship_mgmt_desc: "Technical management, crew services, maintenance and compliance support for modern tanker operations.",
+        marine_desc: "Offshore support, subsea logistics and marine engineering services for ports and energy projects."
+      },
       placeholders: {
         about_title: "About NexaCrude",
         about_desc: "This is a placeholder for the About page.",
@@ -185,6 +207,28 @@ const resources = {
         departure_busan: "启航：釜山",
         stop_qingdao: "中途停靠：青岛",
         arrival_shanghai: "抵达：上海"
+      },
+      about: {
+        title: "关于 NexaCrude",
+        intro: "NexaCrude 是一家面向现代能源与贸易的下一代海运物流领军企业。我们将超大型油轮专业能力、数字化航运运营和可持续港到港服务相结合，以速度、透明度和韧性推动全球贸易。",
+        mission_title: "我们的使命",
+        mission_text: "提供安全、可靠且碳敏感的运输解决方案，助力客户、社区和经济体跨越每一个海洋。",
+        vision_title: "我们的愿景",
+        vision_text: "通过沙特战略规模与先进物流智能和卓越服务相结合，成为全球最值得信赖的海运合作伙伴。",
+        values_title: "核心优势",
+        values_text: "一体化航运、主动供应链规划和以创新为先的文化，使 NexaCrude 成为现代海运物流的标杆。",
+        sustainability_title: "可持续发展",
+        sustainability_text: "我们投资于更清洁燃料方案、岸电兼容码头和航程优化，减少排放同时保持可靠交付。"
+      },
+      units: {
+        title: "NexaCrude 业务部门",
+        intro: "我们的多元化业务部门提供船舶运营、货运物流、化学品运输、干散货运输和离岸海洋支持等专业服务。",
+        oil_desc: "管理 VLCC 船队和原油运输解决方案，安全合规地连接产油商与炼油厂。",
+        logistics_desc: "整合货运代理、通关服务、仓储和多式联运协调，覆盖主要贸易走廊。",
+        chemicals_desc: "专用化学品油轮和敏感工业货物的风险控制运输服务。",
+        drybulk_desc: "高效租船和散货运输服务，涵盖粮食、矿产和建筑材料。",
+        ship_mgmt_desc: "提供技术管理、船员服务、维护和合规支持，保障现代油轮运营。",
+        marine_desc: "为港口和能源项目提供离岸支援、海底物流和海洋工程服务。"
       },
       placeholders: {
         about_title: "关于 NexaCrude",

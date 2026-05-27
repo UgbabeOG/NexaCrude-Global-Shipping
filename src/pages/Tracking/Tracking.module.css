@@ -312,6 +312,13 @@
 
 .shipBody {
   transition: fill 0.3s ease;
+  stroke: #60a5fa;
+  stroke-width: 0.5;
+}
+
+.shipWave {
+  animation: waveDrift 2s ease-in-out infinite;
+  opacity: 0.85;
 }
 
 .shipGlow {
@@ -686,6 +693,18 @@
   50% {
     r: 12;
     fill: rgba(56, 189, 248, 0);
+  }
+}
+
+@keyframes waveDrift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
