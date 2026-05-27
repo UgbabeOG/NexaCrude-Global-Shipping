@@ -64,7 +64,7 @@ const resources = {
       },
       tracking: {
         title: "Track Your Shipment",
-        desc: "Enter your tracking number to watch your cargo's 5-day voyage in real-time.",
+        desc: "Enter your tracking number to follow the movement of your cargo or shipment.",
         placeholder: "Enter Tracking ID (e.g., NXC-VLCC-1361)",
         btn: "Track Now",
         live_simulation: "Live Voyage Simulation",
@@ -184,7 +184,7 @@ const resources = {
       },
       tracking: {
         title: "追踪您的货物",
-        desc: "输入您的追踪号码，实时观看您货物为期5天的航程。",
+        desc: "输入您的追踪号码，跟踪您的货物或运单的移动。",
         placeholder: "输入追踪ID（例如：NXC-VLCC-3321）",
         btn: "立即追踪",
         live_simulation: "实时航程模拟",

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Package, Droplet, Globe, Truck, CheckCircle } from 'lucide-react';
 import styles from './Logistics.module.css';
 
@@ -15,7 +16,7 @@ const Logistics: React.FC = () => {
               We handle containerized cargo, bulk shipments and critical crude oil flows through the busiest lands and seas.
             </p>
             <div className={styles.heroActions}>
-              <button className="btn">Track a Shipment</button>
+              <Link to="/tracking" className="btn">Track a Shipment</Link>
               <button className="btn btn-outline">Explore Services <ArrowRight size={16} /></button>
             </div>
           </div>
