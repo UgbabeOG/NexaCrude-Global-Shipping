@@ -134,17 +134,28 @@
   color: #0f172a;
 }
 
+.serviceCard {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background-size: cover !important;
+  background-position: center !important;
+  color: #ffffff;
+}
+
+.serviceCard h3 {
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
 .serviceCard p {
-  color: #475569;
-  line-height: 1.8;
-  margin-bottom: 18px;
+  color: #ffffff;
 }
 
 .serviceCard ul {
-  display: grid;
-  gap: 10px;
-  color: #334155;
-  padding-left: 18px;
+  color: #ffffff;
 }
 
 .serviceCard li {
@@ -154,45 +165,6 @@
   font-size: 0.98rem;
 }
 
-.animationSection {
-  padding: 70px 0;
-}
-
-.animationContent {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.animationCard {
-  background: #0f172a;
-  border-radius: 24px;
-  padding: 28px;
-  color: #ffffff;
-  position: relative;
-  overflow: hidden;
-}
-
-.maritimeMap {
-  height: 340px;
-  position: relative;
-  background: linear-gradient(180deg, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.24));
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.maritimeMap::before,
-.maritimeMap::after {
-  content: '';
-  position: absolute;
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  filter: blur(40px);
-}
-
-.maritimeMap::before {
   top: -60px;
   left: -40px;
   background: rgba(56, 189, 248, 0.28);
