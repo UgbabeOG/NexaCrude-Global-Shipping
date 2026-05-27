@@ -171,6 +171,11 @@
   font-size: 0.98rem;
 }
 
+.maritimeMap {
+  position: relative;
+  height: 360px;
+}
+
 .maritimeMap::before {
   content: "";
   position: absolute;
@@ -183,8 +188,13 @@
 }
 
 .maritimeMap::after {
+  content: "";
+  position: absolute;
   bottom: -60px;
   right: -50px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
   background: rgba(252, 211, 77, 0.18);
 }
 
@@ -262,6 +272,19 @@
   display: grid;
   gap: 16px;
   margin-top: 28px;
+}
+
+.animationContent {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  align-items: center;
+}
+
+.animationCard {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 18px;
+  border-radius: 16px;
 }
 
 .animationStats div {

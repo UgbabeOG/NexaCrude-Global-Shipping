@@ -244,11 +244,18 @@ const resources = {
   }
 };
 
+const detectDefaultLng = () => {
+  if (typeof navigator !== 'undefined' && navigator.language) {
+    return navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+  }
+  return 'en';
+};
+
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',
+    lng: detectDefaultLng(),
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false
