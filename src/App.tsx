@@ -5,6 +5,7 @@ import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import Tracking from "./pages/Tracking/Tracking";
 import Logistics from "./pages/Logistics/Logistics";
+import "./App.css";
 
 const App: React.FC = () => {
   const { t } = useTranslation();
@@ -119,49 +120,71 @@ const App: React.FC = () => {
             path="/units"
             element={
               <div className="container" style={{ padding: "100px 0" }}>
-                <div style={{ maxWidth: 980, margin: "0 auto" }}>
-                  <h1>{t("units.title")}</h1>
-                  <p style={{ margin: "20px 0 40px", lineHeight: 1.8 }}>
-                    {t("units.intro")}
-                  </p>
-                  <div style={{ display: "grid", gap: 24 }}>
+                <div className="units-page">
+                  <section className="units-hero">
+                    <div className="units-hero-card">
+                      <img
+                        src="/assets/images/banner-03.jpg"
+                        alt="NexaCrude business units overview"
+                      />
+                    </div>
+                    <div className="units-hero-text">
+                      <span className="eyebrow">NexaCrude Units</span>
+                      <h1>{t("units.title")}</h1>
+                      <p>{t("units.intro")}</p>
+                    </div>
+                  </section>
+                  <div className="units-grid">
                     {[
                       {
+                        img: "/assets/images/oil.jpg",
+                        alt: "Oil logistics and energy transport",
                         title: t("home.oil_name"),
                         desc: t("units.oil_desc"),
                       },
                       {
+                        img: "/assets/images/logistics.jpg",
+                        alt: "Integrated shipping logistics",
                         title: t("home.logistics_name"),
                         desc: t("units.logistics_desc"),
                       },
                       {
+                        img: "/assets/images/chemicals.jpg",
+                        alt: "Chemical supply-chain services",
                         title: t("home.chemicals_name"),
                         desc: t("units.chemicals_desc"),
                       },
                       {
+                        img: "/assets/images/dry-bulk.jpg",
+                        alt: "Dry bulk cargo transport",
                         title: t("home.drybulk_name"),
                         desc: t("units.drybulk_desc"),
                       },
                       {
+                        img: "/assets/images/ship-management.jpg",
+                        alt: "Ship management and fleet operations",
                         title: t("home.ship_mgmt_name"),
                         desc: t("units.ship_mgmt_desc"),
                       },
                       {
+                        img: "/assets/images/marine.jpg",
+                        alt: "Marine services and port operations",
                         title: t("home.marine_name"),
                         desc: t("units.marine_desc"),
                       },
-                    ].map((unit) => (
+                    ].map((unit, index) => (
                       <div
                         key={unit.title}
+                        className="unit-card"
                         style={{
-                          background: "#ffffff",
-                          borderRadius: 20,
-                          padding: 28,
-                          boxShadow: "0 20px 50px rgba(15, 23, 42, 0.06)",
+                          animationDelay: `${index * 0.08}s`,
                         }}
                       >
-                        <h3>{unit.title}</h3>
-                        <p>{unit.desc}</p>
+                        <img src={unit.img} alt={unit.alt} />
+                        <div className="unit-card-content">
+                          <h3>{unit.title}</h3>
+                          <p>{unit.desc}</p>
+                        </div>
                       </div>
                     ))}
                   </div>
