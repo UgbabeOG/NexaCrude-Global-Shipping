@@ -4,7 +4,9 @@
 }
 
 .hero {
-  background-image: linear-gradient(180deg, rgba(0, 34, 102, 0.9), rgba(0, 34, 102, 0.45)), url('/assets/images/logistics.jpg');
+  background-image:
+    linear-gradient(180deg, rgba(0, 34, 102, 0.9), rgba(0, 34, 102, 0.45)),
+    url("/assets/images/logistics.jpg");
   background-size: cover;
   background-position: center;
   padding: 140px 0 100px;
@@ -110,7 +112,9 @@
   border-radius: 20px;
   padding: 30px;
   border: 1px solid rgba(15, 23, 42, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .serviceCard:hover {
@@ -139,7 +143,9 @@
   border-radius: 20px;
   padding: 30px;
   border: 1px solid rgba(15, 23, 42, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   background-size: cover !important;
   background-position: center !important;
   color: #ffffff;
@@ -165,8 +171,14 @@
   font-size: 0.98rem;
 }
 
+.maritimeMap::before {
+  content: "";
+  position: absolute;
   top: -60px;
   left: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
   background: rgba(56, 189, 248, 0.28);
 }
 
@@ -204,7 +216,7 @@
 }
 
 .shipIcon::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: 8px;
@@ -331,20 +343,37 @@
 }
 
 @keyframes sail {
-  0% { transform: translateX(0) translateY(0); }
-  50% { transform: translateX(340px) translateY(-6px); }
-  100% { transform: translateX(0) translateY(0); }
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(340px) translateY(-6px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); }
-  70% { box-shadow: 0 0 0 26px rgba(255, 255, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 26px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
 }
 
 @media (max-width: 992px) {
