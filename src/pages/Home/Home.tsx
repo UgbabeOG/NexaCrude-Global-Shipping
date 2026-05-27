@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import styles from './Home.module.css';
 
@@ -64,12 +64,6 @@ const Home: React.FC = () => {
             </div>
           </div>
         ))}
-        <button className={styles.sliderBtnPrev} onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}>
-          <ChevronLeft size={30} />
-        </button>
-        <button className={styles.sliderBtnNext} onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}>
-          <ChevronRight size={30} />
-        </button>
       </section>
 
       {/* Business Units */}
