@@ -102,7 +102,9 @@ const App: React.FC = () => {
                           style={{
                             width: "100%",
                             height: 180,
-                            objectFit: "cover",
+                            objectFit: "contain",
+                            backgroundColor: "#003366",
+                            padding: "20px"
                           }}
                         />
                         <div style={{ padding: 28 }}>

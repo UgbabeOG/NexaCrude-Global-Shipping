@@ -37,9 +37,7 @@ const Header: React.FC = () => {
         <div className="container">
           <nav className={styles.nav} aria-label="Primary navigation">
             <Link to="/" className={styles.logo}>
-              <div className={styles.logoBox}>
-                <span className={styles.logoText}>NEXACRUDE</span>
-              </div>
+              <img src={import.meta.env.BASE_URL + 'assets/images/logo.svg'} alt="NexaCrude Logo" className={styles.logoImage} />
             </Link>
 
             <div className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}>

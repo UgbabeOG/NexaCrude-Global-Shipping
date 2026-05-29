@@ -270,8 +270,10 @@
 .unit-card img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  background-color: var(--primary);
+  padding: 20px;
 }
 
 .unit-card-content {

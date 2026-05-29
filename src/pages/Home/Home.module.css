@@ -129,8 +129,11 @@
 
 .unitImage {
   height: 200px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: var(--primary);
+  padding: 20px;
 }
 
 .unitContent {

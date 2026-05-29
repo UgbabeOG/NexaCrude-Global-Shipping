@@ -53,11 +53,9 @@
   align-items: center;
 }
 
-.logoText {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--primary);
-  letter-spacing: 2px;
+.logoImage {
+  height: 40px;
+  display: block;
 }
 
 .navLinks {
