@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, Link } from 'react-router-dom';
 import styles from './Home.module.css';
 
 const base = import.meta.env.BASE_URL || '/';
@@ -40,6 +41,7 @@ const units = [
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -68,7 +70,13 @@ const Home: React.FC = () => {
                 <span className={styles.slideCounter}>0{index + 1}/0{slides.length}</span>
                 <h1>{t(slide.titleKey)}</h1>
                 <p>{t(slide.subtitleKey)}</p>
-                <button type="button" className="btn btn-outline">{t('home.about_btn')}</button>
+                <button 
+                  type="button" 
+                  className="btn btn-outline" 
+                  onClick={() => navigate('/about')}
+                >
+                  {t('home.about_btn')}
+                </button>
               </div>
             </div>
           </div>
@@ -89,7 +97,9 @@ const Home: React.FC = () => {
                 <div className={styles.unitContent}>
                   <h3>{t(unit.nameKey)}</h3>
                   <p>{t(unit.descKey)}</p>
-                  <a href="#" className={styles.learnMore}>{t('home.learn_more')} <ArrowRight size={16} /></a>
+                  <Link to="/units" className={styles.learnMore}>
+                    {t('home.learn_more')} <ArrowRight size={16} />
+                  </Link>
                 </div>
               </div>
             ))}
