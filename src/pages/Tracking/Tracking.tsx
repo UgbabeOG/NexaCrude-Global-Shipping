@@ -28,7 +28,8 @@ const Tracking: React.FC = () => {
   const [hoveredPort, setHoveredPort] = useState<string | null>(null);
   const { t } = useTranslation();
 
-  const totalSimulatedDuration = 5 * 24 * 60 * 60 * 1000; // 5 days real time
+  const totalSimulatedDuration = 4 * 24 * 60 * 60 * 1000; // 4 days real time
+  const departureDate = new Date(2026, 5, 2); // June 2, 2026
   const tickInterval = 1000;
   const minZoom = 1;
   const maxZoom = 2.2;
@@ -123,10 +124,9 @@ const Tracking: React.FC = () => {
   };
 
   const shipPos = getShipPos();
-  const currentDay = Math.min(Math.max(1, Math.ceil((progress / 100) * 5)), 5);
+  const currentDay = Math.min(Math.max(1, Math.ceil((progress / 100) * 4)), 4);
   const progressPercent = Math.round(progress);
-  const departureDate = new Date(startTime ?? Date.now());
-  const etaDate = new Date(departureDate.getTime() + 5 * 24 * 60 * 60 * 1000);
+  const etaDate = new Date(departureDate.getTime() + totalSimulatedDuration);
   const formattedEta = etaDate.toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
