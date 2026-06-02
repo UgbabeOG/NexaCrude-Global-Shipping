@@ -46,8 +46,10 @@ const Tracking: React.FC = () => {
       setTrackingId(normalizedId);
       setShowStatus(true);
       setNotFound(false);
-      setProgress(0);
-      setStartTime(Date.now());
+      // Start the simulation already 12% into the voyage to show movement
+      const initialProgress = 12;
+      setProgress(initialProgress);
+      setStartTime(Date.now() - (initialProgress / 100) * totalSimulatedDuration);
       setActiveInfo("ship");
       setZoomLevel(1);
       setShowMapOverlay(true);
