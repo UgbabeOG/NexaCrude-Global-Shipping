@@ -16,9 +16,11 @@ import styles from "./Tracking.module.css";
 const Tracking: React.FC = () => {
   const [trackingId, setTrackingId] = useState("");
   const [showStatus, setShowStatus] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
   const [startTime, setStartTime] = useState<number | null>(null);
+  const [initialProgress, setInitialProgress] = useState(83);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [activeInfo, setActiveInfo] = useState<
     "ship" | "busan" | "qingdao" | "shanghai"
@@ -44,19 +46,27 @@ const Tracking: React.FC = () => {
 
     if (normalizedId === validTrackingCode) {
       setTrackingId(normalizedId);
-      setShowStatus(true);
+      setShowStatus(false);
+      setIsLoading(true);
       setNotFound(false);
-      // Start the simulation already 68% into the voyage to show movement
-      const initialProgress = 68;
-      setProgress(initialProgress);
-      setStartTime(Date.now() - (initialProgress / 100) * totalSimulatedDuration);
+      // Start the shipment at 83% and ramp it to 100% by 12:00 AM China time.
+      const nextInitialProgress = 83;
+      setInitialProgress(nextInitialProgress);
+      setProgress(nextInitialProgress);
+      setStartTime(Date.now());
       setActiveInfo("ship");
       setZoomLevel(1);
       setShowMapOverlay(true);
+
+      window.setTimeout(() => {
+        setIsLoading(false);
+        setShowStatus(true);
+      }, 2000);
       return;
     }
 
     setShowStatus(false);
+    setIsLoading(false);
     setNotFound(true);
     setStartTime(null);
     setProgress(0);
@@ -84,16 +94,26 @@ const Tracking: React.FC = () => {
     let interval: ReturnType<typeof setInterval>;
     if (showStatus && startTime !== null) {
       interval = setInterval(() => {
+        const chinaNow = new Date(
+          new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" }),
+        );
+        const chinaMidnight = new Date(chinaNow);
+        chinaMidnight.setDate(chinaMidnight.getDate() + 1);
+        chinaMidnight.setHours(0, 0, 0, 0);
+
         const elapsed = Date.now() - startTime;
+        const remainingToMidnight = Math.max(1, chinaMidnight.getTime() - Date.now());
         const nextProgress = Math.min(
-          (elapsed / totalSimulatedDuration) * 100,
+          initialProgress +
+            (elapsed / remainingToMidnight) * (100 - initialProgress),
           100,
         );
+
         setProgress(nextProgress);
       }, tickInterval);
     }
     return () => clearInterval(interval);
-  }, [showStatus, startTime]);
+  }, [showStatus, startTime, initialProgress]);
 
   useEffect(() => {
     if (showMapOverlay) {
@@ -226,6 +246,20 @@ const Tracking: React.FC = () => {
           <div className="container">
             <div className={styles.notFoundCard}>
               <p>{t("tracking.not_found")}</p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isLoading && (
+        <section className={styles.statusSection}>
+          <div className="container">
+            <div className={styles.loadingCard}>
+              <div className={styles.spinner} aria-label="Loading tracking map" />
+              <div>
+                <h3>Preparing live shipment map…</h3>
+                <p>Loading the latest tracking view for your vessel.</p>
+              </div>
             </div>
           </div>
         </section>
