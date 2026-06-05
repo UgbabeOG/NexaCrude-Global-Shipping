@@ -46,8 +46,8 @@ const Tracking: React.FC = () => {
       setTrackingId(normalizedId);
       setShowStatus(true);
       setNotFound(false);
-      // Start the simulation already 56% into the voyage to show movement
-      const initialProgress = 56;
+      // Start the simulation already 68% into the voyage to show movement
+      const initialProgress = 68;
       setProgress(initialProgress);
       setStartTime(Date.now() - (initialProgress / 100) * totalSimulatedDuration);
       setActiveInfo("ship");
