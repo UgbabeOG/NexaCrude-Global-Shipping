@@ -20,7 +20,7 @@ const Tracking: React.FC = () => {
   const [notFound, setNotFound] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
   const [startTime, setStartTime] = useState<number | null>(null);
-  const [initialProgress, setInitialProgress] = useState(97);
+  const [initialProgress, setInitialProgress] = useState(100);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [activeInfo, setActiveInfo] = useState<
     "ship" | "busan" | "qingdao" | "shanghai"
@@ -49,8 +49,8 @@ const Tracking: React.FC = () => {
       setShowStatus(false);
       setIsLoading(true);
       setNotFound(false);
-      // Start the shipment at 97% and ramp it to 100% by 12:00 AM China time.
-      const nextInitialProgress = 97;
+      // Complete the voyage at 100% so the ship tracking view finishes in its arrived state.
+      const nextInitialProgress = 100;
       setInitialProgress(nextInitialProgress);
       setProgress(nextInitialProgress);
       setStartTime(Date.now());
