@@ -3,16 +3,4 @@
   "name": "nexacrude-global-shipping",
   "compatibility_date": "2026-05-29",
   "pages_build_output_dir": "./dist",
-  "build": {
-    "command": "npm run build"
-  },
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "not_found_handling": "single-page-application"
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
 }
