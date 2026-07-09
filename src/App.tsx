@@ -7,11 +7,13 @@ import Tracking from "./pages/Tracking/Tracking";
 import Logistics from "./pages/Logistics/Logistics";
 import "./App.css";
 
+const basename = import.meta.env.BASE_URL || "/";
+
 const App: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Router>
+    <Router basename={basename}>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -37,7 +39,10 @@ const App: React.FC = () => {
                     }}
                   >
                     <img
-                      src={import.meta.env.BASE_URL + 'assets/images/banner-bahri-01.jpg'}
+                      src={
+                        import.meta.env.BASE_URL +
+                        "assets/images/banner-bahri-01.jpg"
+                      }
                       alt="NexaCrude global shipping network"
                       style={{
                         width: "100%",
@@ -63,25 +68,33 @@ const App: React.FC = () => {
                   >
                     {[
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-ship-mgmt.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-ship-mgmt.svg",
                         alt: "Advanced ship management",
                         title: t("about.mission_title"),
                         text: t("about.mission_text"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-cargo.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-cargo.svg",
                         alt: "Global logistics operations",
                         title: t("about.vision_title"),
                         text: t("about.vision_text"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-oil.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-oil.svg",
                         alt: "Sustainable energy transport",
                         title: t("about.values_title"),
                         text: t("about.values_text"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-marine.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-marine.svg",
                         alt: "Marine excellence and sustainability",
                         title: t("about.sustainability_title"),
                         text: t("about.sustainability_text"),
@@ -104,7 +117,7 @@ const App: React.FC = () => {
                             height: 180,
                             objectFit: "contain",
                             backgroundColor: "#003366",
-                            padding: "20px"
+                            padding: "20px",
                           }}
                         />
                         <div style={{ padding: 28 }}>
@@ -126,9 +139,12 @@ const App: React.FC = () => {
                   <section className="units-hero">
                     <div className="units-hero-card">
                       <img
-                          src={import.meta.env.BASE_URL + 'assets/images/banner-bahri-01.jpg'}
-                          alt="NexaCrude business units overview"
-                        />
+                        src={
+                          import.meta.env.BASE_URL +
+                          "assets/images/banner-bahri-01.jpg"
+                        }
+                        alt="NexaCrude business units overview"
+                      />
                     </div>
                     <div className="units-hero-text">
                       <span className="eyebrow">NexaCrude Units</span>
@@ -139,37 +155,49 @@ const App: React.FC = () => {
                   <div className="units-grid">
                     {[
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-oil.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-oil.svg",
                         alt: "Oil logistics and energy transport",
                         title: t("home.oil_name"),
                         desc: t("units.oil_desc"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-cargo.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-cargo.svg",
                         alt: "Integrated shipping logistics",
                         title: t("home.logistics_name"),
                         desc: t("units.logistics_desc"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-chemical.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-chemical.svg",
                         alt: "Chemical supply-chain services",
                         title: t("home.chemicals_name"),
                         desc: t("units.chemicals_desc"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-drybulk.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-drybulk.svg",
                         alt: "Dry bulk cargo transport",
                         title: t("home.drybulk_name"),
                         desc: t("units.drybulk_desc"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-ship-mgmt.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-ship-mgmt.svg",
                         alt: "Ship management and fleet operations",
                         title: t("home.ship_mgmt_name"),
                         desc: t("units.ship_mgmt_desc"),
                       },
                       {
-                        img: import.meta.env.BASE_URL + 'assets/images/bahri-marine.svg',
+                        img:
+                          import.meta.env.BASE_URL +
+                          "assets/images/bahri-marine.svg",
                         alt: "Marine services and port operations",
                         title: t("home.marine_name"),
                         desc: t("units.marine_desc"),
