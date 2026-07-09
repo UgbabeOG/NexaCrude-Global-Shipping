@@ -11,6 +11,7 @@
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@rolldown/binding-linux-x64-gnu": "^1.0.3",
     "i18next": "^26.2.0",
     "lucide-react": "^1.16.0",
     "react": "^19.2.6",
@@ -33,8 +34,5 @@
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",
     "wrangler": "^4.95.0"
-  },
-  "optionalDependencies": {
-    "@rolldown/binding-linux-x64-gnu": "^1.0.3"
   }
 }
