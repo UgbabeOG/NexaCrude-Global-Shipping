@@ -20,7 +20,7 @@ const Tracking: React.FC = () => {
   const [notFound, setNotFound] = useState(false);
   const [progress, setProgress] = useState(0); // 0 to 100
   const [startTime, setStartTime] = useState<number | null>(null);
-  const [initialProgress, setInitialProgress] = useState(1);
+  const [initialProgress, setInitialProgress] = useState(3);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [activeInfo, setActiveInfo] = useState<
     "ship" | "busan" | "qingdao" | "shanghai"
@@ -49,7 +49,7 @@ const Tracking: React.FC = () => {
       setShowStatus(false);
       setIsLoading(true);
       setNotFound(false);
-      const nextInitialProgress = 1;
+      const nextInitialProgress = 3;
       setInitialProgress(nextInitialProgress);
       setProgress(nextInitialProgress);
       setStartTime(Date.now());
